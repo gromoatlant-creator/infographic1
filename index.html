@@ -1,0 +1,106 @@
+<title>Сервисы для инфографики</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Unbounded:wght@500;700&display=swap">
+<style>
+/* Layout: one vertical statistical poster: header with animated shapes, 3 key figures, bar chart, donut, takeaway. */
+:root{--bg:#f3f6fb;--surface:#ffffff;--fg:#14213d;--muted:#5a6785;--line:#d9e0ee;--pro:#1f8a70;--con:#e4572e;--accent:#2f5bea;--accent2:#f2b134;
+--display:'Unbounded','Arial Black',sans-serif;--body:'Manrope','Segoe UI',Arial,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1526;--surface:#172138;--fg:#eaf0ff;--muted:#9fb0d3;--line:#2a3856;--pro:#3fc9a5;--con:#ff7a52;--accent:#7b9bff;--accent2:#f5c25a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e1526;--surface:#172138;--fg:#eaf0ff;--muted:#9fb0d3;--line:#2a3856;--pro:#3fc9a5;--con:#ff7a52;--accent:#7b9bff;--accent2:#f5c25a;color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.5;padding-block:0 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+header{position:relative;overflow:hidden;margin-top:16px;padding:40px 28px;border-radius:20px;background:var(--accent);color:#fff}
+header h1{font-family:var(--display);font-weight:700;font-size:clamp(26px,6vw,44px);line-height:1.1;margin:0 0 12px;text-wrap:balance;position:relative}
+header p{margin:0;max-width:52ch;opacity:.92;position:relative}
+.sh{position:absolute;border-radius:50%;opacity:.35}
+.s1{width:180px;height:180px;right:-40px;top:-50px;background:var(--accent2);animation:float 7s ease-in-out infinite}
+.s2{width:90px;height:90px;right:120px;bottom:-30px;background:#fff;animation:float 5s ease-in-out infinite reverse}
+.s3{width:46px;height:46px;right:40px;bottom:50px;border-radius:12px;background:#fff;animation:spin 12s linear infinite}
+@keyframes float{50%{transform:translateY(18px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px}
+.kpi b{display:block;font-family:var(--display);font-size:44px;line-height:1.1;font-variant-numeric:tabular-nums}
+.kpi span{color:var(--muted);font-size:14px}
+.kpi:nth-child(1) b{color:var(--accent)}.kpi:nth-child(2) b{color:var(--con)}.kpi:nth-child(3) b{color:var(--pro)}
+section{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;min-width:0}
+h2{font-family:var(--display);font-weight:500;font-size:18px;margin:0 0 4px}
+.sub{color:var(--muted);font-size:14px;margin:0 0 20px}
+.legend{display:flex;gap:16px;font-size:14px;margin-bottom:12px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.row{display:grid;grid-template-columns:96px 1fr;gap:12px;align-items:center;padding:6px 0}
+.row>span{font-weight:700;font-size:14px;overflow-wrap:anywhere}
+.bars{display:flex;flex-direction:column;gap:4px}
+.bar{height:16px;border-radius:0 8px 8px 0;color:#fff;font-size:11px;font-weight:700;line-height:16px;padding-left:6px;transform-origin:left;animation:grow 1.1s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i)*70ms)}
+.bar.p{background:var(--pro);width:calc(var(--n)*16%)}
+.bar.c{background:var(--con);width:calc(var(--n)*16%)}
+@keyframes grow{from{transform:scaleX(0)}}
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;align-items:center}
+svg{max-width:100%;height:auto}
+.ring{fill:none;stroke-width:26;stroke-dasharray:var(--d) 100;animation:draw 1.4s ease-out both}
+@keyframes draw{from{stroke-dasharray:0 100}}
+.key{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;font-size:15px}
+.key i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:8px}
+.fmt{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.fmt div{border:1px dashed var(--line);border-radius:12px;padding:14px;color:var(--muted);font-size:14px}
+.fmt div.on{border:2px solid var(--accent);color:var(--fg);background:color-mix(in srgb,var(--accent) 10%,transparent)}
+.fmt b{display:block;margin-bottom:2px}
+footer{color:var(--muted);font-size:13px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+<div class="wrap">
+<header>
+<div class="sh s1"></div><div class="sh s2"></div><div class="sh s3"></div>
+<h1>Сервисы для создания инфографики</h1>
+<p>Статистическая инфографика по обзору из практической работы № 2: 10 онлайн-сервисов, их преимущества и недостатки.</p>
+</header>
+
+<div class="kpis">
+<div class="kpi"><b data-to="10">10</b><span>сервисов в обзоре</span></div>
+<div class="kpi"><b data-to="8">8</b><span>из 9 описанных сервисов дают часть функций только за плату</span></div>
+<div class="kpi"><b data-to="6">6</b><span>сервисов с англоязычным интерфейсом</span></div>
+</div>
+
+<section>
+<h2>Преимущества и недостатки</h2>
+<p class="sub">Число пунктов в списках «Преимущества» и «Недостатки» для каждого сервиса. Visual Paradigm (InfoART) описан без таких списков.</p>
+<div class="legend"><span><i style="background:var(--pro)"></i>Преимущества</span><span><i style="background:var(--con)"></i>Недостатки</span></div>
+<div id="chart" role="img" aria-label="Столбчатая диаграмма: число преимуществ и недостатков у каждого сервиса"></div>
+</section>
+
+<section>
+<h2>Язык интерфейса</h2>
+<p class="sub">Девять сервисов с описанными преимуществами и недостатками.</p>
+<div class="split">
+<svg viewBox="0 0 120 120" aria-label="Кольцевая диаграмма языка интерфейса">
+<g transform="rotate(-90 60 60)">
+<circle class="ring" cx="60" cy="60" r="40" pathLength="100" stroke="var(--line)" style="--d:100"/>
+<circle class="ring" cx="60" cy="60" r="40" pathLength="100" stroke="var(--accent)" style="--d:66.7"/>
+<circle class="ring" cx="60" cy="60" r="40" pathLength="100" stroke="var(--accent2)" style="--d:11.1;stroke-dashoffset:-66.7"/>
+</g>
+<text x="60" y="66" text-anchor="middle" font-family="Unbounded,sans-serif" font-size="18" fill="var(--fg)">6 из 9</text>
+</svg>
+<ul class="key">
+<li><i style="background:var(--accent)"></i>Английский интерфейс: Easel, Piktochart, Visme, Genial, Cacoo, Infogram (6)</li>
+<li><i style="background:var(--accent2)"></i>Неполная русификация: Venngage (1)</li>
+<li><i style="background:var(--line)"></i>Без замечаний по языку: Canva, Crello (2)</li>
+</ul>
+</div>
+</section>
+
+<section>
+<h2>Выбранный формат</h2>
+<p class="sub">Из трёх вариантов задания выбрана статистика.</p>
+<div class="fmt"><div class="on"><b>Статистика</b>Диаграммы и числа с анимацией</div><div><b>Флипбук</b>Листаемая книга</div><div><b>Рекламный плакат</b>Один яркий лист</div></div>
+</section>
+
+<footer>Источник данных: теоретическая часть практической работы № 2, раздел «Обзор продуктов». Ограничения Canva и Crello на территории РФ указаны в том же разделе.</footer>
+</div>
+<script>
+var D=[["Canva",4,2],["Crello",3,2],["Venngage",4,4],["Easel",3,3],["Piktochart",4,2],["Visme",4,2],["Genial",5,3],["Cacoo",4,1],["Infogram",3,4]];
+var h="";D.forEach(function(d,i){h+='<div class="row"><span>'+d[0]+'</span><div class="bars"><div class="bar p" style="--n:'+d[1]+';--i:'+i+'">'+d[1]+'</div><div class="bar c" style="--n:'+d[2]+';--i:'+i+'">'+d[2]+'</div></div></div>'});
+document.getElementById("chart").innerHTML=h;
+if(!matchMedia("(prefers-reduced-motion: reduce)").matches){
+document.querySelectorAll("[data-to]").forEach(function(el){var to=+el.dataset.to,t0=performance.now();
+(function f(t){var p=Math.min(1,(t-t0)/1200);el.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(t0)})}
+</script>
